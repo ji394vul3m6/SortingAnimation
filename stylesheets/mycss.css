@@ -2,33 +2,42 @@ body{
   background: gray;
 }
 
-input{
-  margin: 10px 10px 0 10px;
+.line{
+  background: #F7F7F7;
+  height: 6px;
+  width: 1080px;
+  margin: 2px auto;
+  border-radius: 99em;
 }
 
 .algo{
   width: 900px;
-  margin: 10px auto;
+  height: 210px;
+  margin: 0px auto;
 }
 
 .title{
   color: white;
   text-align: center;
   font-size: 50px;
+  height: 60px;
+  line-height: 60px;
   margin: 20px auto;
 }
 
-.line{
-  background: #F7F7F7;
-  height: 5px;
-  width: 1080px;
-  margin: 50px auto;
-  border-radius: 99em;
+.button-container{
+  height: 40px;
+  line-height: 30px;
+}
+
+input{
+  margin: 10px 10px 0 10px;
 }
 
 .container{
   background: #E0E0E0;
-  height: 100px;
+  height: 110px;
+  margin: 20px auto;
 }
 
 .numBoxes{
