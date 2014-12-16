@@ -1,0 +1,55 @@
+body{
+  background: gray;
+}
+
+input{
+  margin: 10px 10px 0 10px;
+}
+
+.algo{
+  width: 900px;
+  margin: 10px auto;
+}
+
+.title{
+  color: white;
+  text-align: center;
+  font-size: 50px;
+  margin: 20px auto;
+}
+
+.line{
+  background: #F7F7F7;
+  height: 5px;
+  width: 1080px;
+  margin: 50px auto;
+  border-radius: 99em;
+}
+
+.container{
+  background: #E0E0E0;
+  height: 100px;
+}
+
+.numBoxes{
+  margin: 0 auto;
+  width: 700px;
+}
+
+.box {
+  background: green;
+  opacity: .8;
+  color: white;
+
+  width: 50px;
+  height: 50px;
+  margin: 5px 10px;
+
+  text-align: center;
+  line-height: 50px;
+  
+  display: inline-block;
+  position: absolute;
+  
+  border-radius: 10px;
+}
