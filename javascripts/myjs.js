@@ -214,11 +214,11 @@ function merge(start, mid, end){
   var right = mergeList.slice(mid, end+1);
   var animations = [];
   for(i=0; i<left.length; i++){
-    animations.push(["c", readValueFromBox(left[i]), "blue"]);
+    animations.push(["c", readValueFromBox(left[i]), "Brown"]);
     animations.push(["y", readValueFromBox(left[i]), 1]);
   }
   for(i=0; i<right.length; i++){
-    animations.push(["c", readValueFromBox(right[i]), "Brown"]);
+    animations.push(["c", readValueFromBox(right[i]), "Chocolate"]);
     animations.push(["y", readValueFromBox(right[i]), 1]);
   }
   mergeAnimate.push(animations);
