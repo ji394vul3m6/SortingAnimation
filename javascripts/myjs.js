@@ -29,15 +29,15 @@ function initialBubble(){
   bubbleNums = nums.slice();
   for(i=0; i<10; i++){
     box = createBox("bubble",bubbleNums[i]);
-	
+
     $('#bubble')[0].appendChild(box);
-	boxXMoveTo(box.id,i);
-	bubbleList.push(box);
+  boxXMoveTo(box.id,i);
+  bubbleList.push(box);
   }
 }
 function bubbleSort(){
   if(bubbleSorting)
-	return;
+  return;
   bubbleSorting=true;
   bubbleReset=false;
   bubbleSortAnimate=[];
@@ -45,30 +45,30 @@ function bubbleSort(){
   //algorithm
   for(var i=1; i<10; i++){
     for(var j=1; j<10-i+1; j++){
-	  var ani=[];
-	  ani.push(["c", readValueFromBox(bubbleList[j]), "blue"]);
-	  ani.push(["c", readValueFromBox(bubbleList[j-1]), "blue"]);
-	  if(readValueFromBox(bubbleList[j])<readValueFromBox(bubbleList[j-1])){
-		ani.push(["x", readValueFromBox(bubbleList[j]), j-1]);
-		ani.push(["x", readValueFromBox(bubbleList[j-1]), j]);
-	    swap(bubbleList, j, j-1);
-	  }
-	  bubbleSortAnimate.push(ani);
-	  ani=[];
-	  ani.push(["c", readValueFromBox(bubbleList[j]), "green"]);
-	  ani.push(["c", readValueFromBox(bubbleList[j-1]), "green"]);
-	  bubbleSortAnimate.push(ani);
-	}
+      var ani=[];
+      ani.push(["c", readValueFromBox(bubbleList[j]), "blue"]);
+      ani.push(["c", readValueFromBox(bubbleList[j-1]), "blue"]);
+      if(readValueFromBox(bubbleList[j])<readValueFromBox(bubbleList[j-1])){
+        ani.push(["x", readValueFromBox(bubbleList[j]), j-1]);
+        ani.push(["x", readValueFromBox(bubbleList[j-1]), j]);
+        swap(bubbleList, j, j-1);
+      }
+      bubbleSortAnimate.push(ani);
+      ani=[];
+      ani.push(["c", readValueFromBox(bubbleList[j]), "green"]);
+      ani.push(["c", readValueFromBox(bubbleList[j-1]), "green"]);
+      bubbleSortAnimate.push(ani);
+    }
   }
   bubbleSortAnimate.reverse();
   bubbleAnimateStep();
 }
 function bubbleAnimateStep(){
   if(bubbleSortAnimate.length != 0 && bubbleReset != true){
-	var ani = bubbleSortAnimate.pop();
-	for(var i=0; i<ani.length; i++){
-	  handleAnimate("bubble_", ani[i]);
-	}
+    var ani = bubbleSortAnimate.pop();
+    for(var i=0; i<ani.length; i++){
+      handleAnimate("bubble_", ani[i]);
+    }
     setTimeout(function(){ bubbleAnimateStep();}, 500);
   }else if(bubbleSortAnimate.length == 0){
     bubbleSorting = false;
@@ -96,15 +96,15 @@ function initialInsertion(){
   insertionNums = nums.slice();
   for(i=0; i<10; i++){
     box = createBox("insertion",insertionNums[i]);
-	
+
     $('#insertion')[0].appendChild(box);
-	boxXMoveTo(box.id,i);
-	insertionList.push(box);
+    boxXMoveTo(box.id,i);
+    insertionList.push(box);
   }
 }
 function insertionSort(){
   if(insertionSorting)
-	return;
+  return;
   insertionSorting=true;
   insertionReset=false;
   insertionAnimate=[];
@@ -122,22 +122,22 @@ function insertionSort(){
       if(readValueFromBox(insertionList[insertIndex-1])<readValueFromBox(key)){
         animations.push(["c", readValueFromBox(insertionList[insertIndex-1]), "green"]);
         break;
-      } 
+      }
       insertionAnimate.push(animations);
       animations=[];
       animations.push(["c", readValueFromBox(insertionList[insertIndex-1]), "green"]);
     }
     insertionAnimate.push(animations);
-  
+
     var animations=[];
     for(var j=i; insertIndex<j; j--){
       animations.push(["x",readValueFromBox(insertionList[j-1]),j]);
       insertionList[j]=insertionList[j-1];
     }
-	
+
     animations.push(["x",readValueFromBox(key), insertIndex]);
     insertionList[insertIndex]=key;
-	
+
     console.log("key:"+readValueFromBox(key)+","+"insertIndex:"+insertIndex);
     insertionAnimate.push(animations);
     animations=[]
@@ -150,9 +150,9 @@ function insertionSort(){
 function insertionAnimateStep(){
   if(insertionAnimate.length !=0 && insertionReset != true){
     var animations = insertionAnimate.pop();
-	for(var i=0; i<animations.length; i++){
-	  handleAnimate("insertion_", animations[i]);
-	}
+    for(var i=0; i<animations.length; i++){
+      handleAnimate("insertion_", animations[i]);
+    }
     setTimeout(function(){ insertionAnimateStep();}, 500);
   }
 }
@@ -177,21 +177,21 @@ function initialMerge(){
   mergeNums = nums.slice();
   for(i=0; i<10; i++){
     box = createBox("merge",insertionNums[i]);
-	
+
     $('#merge')[0].appendChild(box);
-	boxXMoveTo(box.id,i);
-	mergeList.push(box);
+    boxXMoveTo(box.id,i);
+    mergeList.push(box);
   }
 }
 function mergeSortStart(){
   if(mergeSorting)
-	return;
+  return;
   mergeSorting=true;
   mergeReset=false;
   mergeAnimate=[];
   //algorithm
-  mergeSort(0, mergeList.length-1);  
-  
+  mergeSort(0, mergeList.length-1);
+
   mergeAnimate.reverse();
   mergeAnimateStep();
 }
@@ -199,14 +199,14 @@ function mergeSort(start, end){
     //console.log("mergeSort: "+start+ ',' +end);
   if(start<end){
     var mid = Math.floor((start+end)/2);
-	mergeSort(start, mid);
-	mergeSort(mid+1, end);
+    mergeSort(start, mid);
+    mergeSort(mid+1, end);
     //console.log("mergeSort: "+start+ "," + mid + ',' +end);
-	//console.log("before merge:");
-	//console.log(mergeList);
-	merge(start, mid+1, end);
-	//console.log("after merge:");
-	//console.log(mergeList);
+    //console.log("before merge:");
+    //console.log(mergeList);
+    merge(start, mid+1, end);
+    //console.log("after merge:");
+    //console.log(mergeList);
   }
 }
 function merge(start, mid, end){
@@ -248,7 +248,7 @@ function merge(start, mid, end){
     mergeAnimate.push(animations);
     animations=[];
   }
-  
+
   animations=[];
   for(i=start; i<=end; i++){
     animations.push(["c", readValueFromBox(mergeList[i]), "green"]);
@@ -258,13 +258,13 @@ function merge(start, mid, end){
   /*
   console.log("after:");
   console.log(mergeList.slice(start, end+1));
-  
+
   while(left.length!=0 || right.length!=0){
-	var l,r;
-	if(left.length!=0)
-	  l=left.pop();
-	if(right.length!=0)
-	  r=right.pop();
+  var l,r;
+  if(left.length!=0)
+    l=left.pop();
+  if(right.length!=0)
+    r=right.pop();
   }
   */
 }
@@ -272,9 +272,9 @@ function merge(start, mid, end){
 function mergeAnimateStep(){
   if(mergeAnimate.length !=0 && mergeReset != true){
     var animations = mergeAnimate.pop();
-	for(var i=0; i<animations.length; i++){
-	  handleAnimate("merge_", animations[i]);
-	}
+    for(var i=0; i<animations.length; i++){
+      handleAnimate("merge_", animations[i]);
+    }
     setTimeout(function(){ mergeAnimateStep();}, 500);
   }
 }
@@ -352,7 +352,7 @@ function boxColorTo(id, color){
 
 function shuffle(arr){
   for (i=0; i<10; i++)
-	arr.sort(function(){return 0.5-Math.random();});
+  arr.sort(function(){return 0.5-Math.random();});
 }
 
 function swap(arr, i, j){
