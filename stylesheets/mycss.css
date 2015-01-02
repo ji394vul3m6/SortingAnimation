@@ -28,6 +28,7 @@ body{
 .button-container{
   height: 40px;
   line-height: 30px;
+  margin: 0 auto;
 }
 
 input{
@@ -38,10 +39,12 @@ input{
   background: #E0E0E0;
   height: 110px;
   margin: 20px auto;
+  border-radius: 20px;
 }
 
 .numBoxes{
   margin: 0 auto;
+  height: 50px;
   width: 700px;
 }
 
@@ -61,4 +64,11 @@ input{
   position: absolute;
   
   border-radius: 10px;
+}
+
+#merge-container{
+  height: 230px;
+}
+#merge{
+  height: 170px;
 }
