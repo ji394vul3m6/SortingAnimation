@@ -18,6 +18,12 @@ var mergeAnimate=[];
 var mergeReset = false;
 var mergeSorting = false;
 
+var quickNums;
+var quickList=[];
+var quickAnimate=[];
+var quickReset = false;
+var quickSorting = false;
+
 function initialize(){
   shuffle(nums);
   initialBubble();

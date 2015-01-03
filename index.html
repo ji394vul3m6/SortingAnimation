@@ -8,38 +8,50 @@
 </head>
 <body onload="initialize()">
   <div class="algo">
-	<div class="title"> Bubble Sort </div>
-	<div class="container">
-	  <div class="button-container">
-		<input type="button" value="Sort!" onclick="bubbleSort()">
-		<input type="button" value="Shuffle!" onclick="bubbleShuffle()">
-		<input type="button" value="Reset!" onclick="resetBubbleBox()">
-	  </div>
-	  <div class="numBoxes" id="bubble"></div>
+  <div class="title"> Bubble Sort </div>
+  <div class="container">
+    <div class="button-container">
+    <input type="button" value="Sort!" onclick="bubbleSort()">
+    <input type="button" value="Shuffle!" onclick="bubbleShuffle()">
+    <input type="button" value="Reset!" onclick="resetBubbleBox()">
+    </div>
+    <div class="numBoxes" id="bubble"></div>
     </div>
   </div>
   <div class="line"></div>
   <div class="algo">
-	<div class="title"> Insertion Sort </div>
-	<div class="container">
-	  <div class="button-container">
-	    <input type="button" value="Sort!" onclick="insertionSort()">
-	    <input type="button" value="Shuffle!" onclick="insertionShuffle()">
+  <div class="title"> Insertion Sort </div>
+  <div class="container">
+    <div class="button-container">
+      <input type="button" value="Sort!" onclick="insertionSort()">
+      <input type="button" value="Shuffle!" onclick="insertionShuffle()">
         <input type="button" value="Reset!" onclick="resetInsertionBox()">
-	  </div>
-	  <div class="numBoxes" id="insertion"></div>
+    </div>
+    <div class="numBoxes" id="insertion"></div>
     </div>
   </div>
   <div class="line"></div>
-  <div class="algo">
-	<div class="title"> Merge Sort </div>
-	<div class="container" id="merge-container">
-	  <div class="button-container">
-	    <input type="button" value="Sort!" onclick="mergeSortStart()">
-	    <input type="button" value="Shuffle!" onclick="mergeShuffle()">
+  <div class="algo algo_long">
+    <div class="title"> Merge Sort </div>
+    <div class="container container_long" id="merge-container">
+      <div class="button-container">
+        <input type="button" value="Sort!" onclick="mergeSortStart()">
+        <input type="button" value="Shuffle!" onclick="mergeShuffle()">
         <input type="button" value="Reset!" onclick="resetMergeBox()">
-	  </div>
-	  <div class="numBoxes" id="merge"></div>
+      </div>
+      <div class="numBoxes numBoxes_long" id="merge"></div>
+    </div>
+  </div>
+  <div class="line"></div>
+  <div class="algo algo_long">
+    <div class="title"> Quick Sort </div>
+    <div class="container container_long" id="quick-container">
+      <div class="button-container">
+        <input type="button" value="Sort!" onclick="quickSortStart()">
+        <input type="button" value="Shuffle!" onclick="quickShuffle()">
+        <input type="button" value="Reset!" onclick="resetQuickBox()">
+      </div>
+      <div class="numBoxes numBoxes_long" id="quick"></div>
     </div>
   </div>
 </body>

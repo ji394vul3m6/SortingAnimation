@@ -16,6 +16,10 @@ body{
   margin: 0px auto;
 }
 
+.algo_long{
+  height: 330px;
+}
+
 .title{
   color: white;
   text-align: center;
@@ -42,10 +46,18 @@ input{
   border-radius: 20px;
 }
 
+.container_long{
+  height: 230px;
+}
+
 .numBoxes{
   margin: 0 auto;
   height: 50px;
   width: 700px;
+}
+
+.numBloxes_long{
+  height: 170px;
 }
 
 .box {
@@ -59,16 +71,9 @@ input{
 
   text-align: center;
   line-height: 50px;
-  
+
   display: inline-block;
   position: absolute;
-  
-  border-radius: 10px;
-}
 
-#merge-container{
-  height: 230px;
-}
-#merge{
-  height: 170px;
+  border-radius: 10px;
 }
