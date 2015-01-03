@@ -29,8 +29,10 @@ function initialize(){
   initialBubble();
   initialInsertion();
   initialMerge();
+  initialQuick();
 }
 
+//Bubble sort
 function initialBubble(){
   bubbleNums = nums.slice();
   for(i=0; i<10; i++){
@@ -98,6 +100,7 @@ function resetBubbleBox(){
   }
 }
 
+//Insertion sort
 function initialInsertion(){
   insertionNums = nums.slice();
   for(i=0; i<10; i++){
@@ -179,6 +182,7 @@ function resetInsertionBox(){
   }
 }
 
+//merge sort
 function initialMerge(){
   mergeNums = nums.slice();
   for(i=0; i<10; i++){
@@ -198,8 +202,16 @@ function mergeSortStart(){
   //algorithm
   mergeSort(0, mergeList.length-1);
 
+  animations=[];
+  for(i=0; i<mergeList.length; i++){
+    animations.push(["y", readValueFromBox(mergeList[i]), 0]);
+    animations.push(["c", readValueFromBox(mergeList[i]), "Black"]);
+  }
+  mergeAnimate.push(animations);
+  
   mergeAnimate.reverse();
   mergeAnimateStep();
+  return "SUCCESS";
 }
 function mergeSort(start, end){
     //console.log("mergeSort: "+start+ ',' +end);
@@ -274,7 +286,6 @@ function merge(start, mid, end){
   }
   */
 }
-
 function mergeAnimateStep(){
   if(mergeAnimate.length !=0 && mergeReset != true){
     var animations = mergeAnimate.pop();
@@ -301,6 +312,130 @@ function resetMergeBox(){
     mergeList[i].style.background = "green";
   }
 }
+
+//quick sort
+function initialQuick(){
+  quickNums = nums.slice();
+  for(i=0; i<10; i++){
+    box = createBox("quick",quickNums[i]);
+
+    $('#quick')[0].appendChild(box);
+    boxXMoveTo(box.id,i);
+    quickList.push(box);
+  }
+}
+function quickSortStart(){
+  if(quickSorting)
+    return;
+  quickSorting=true;
+  quickReset=false;
+  quickAnimate=[];
+  console.log("quick sort start");
+  //algorithm
+  quickSort(0, quickList.length-1);
+
+  quickAnimate.reverse();
+  quickAnimateStep();
+  return "SUCCESS";
+}
+function quickSort(start, end){
+  if(end==start){
+    animations = [];
+    animations.push(['c', readValueFromBox(quickList[start]), "Black"]);
+    quickAnimate.push(animations);
+  }
+  if(start<end){
+    //algorithm
+    var left = [];
+    var right = [];
+    var key = quickList[end];
+  
+    for(i=start; i<end; i++){
+      if(readValueFromBox(quickList[i])<=readValueFromBox(key)){
+        left.push(quickList[i]);
+      }else{
+        right.push(quickList[i]);
+      }
+    }
+  
+    //set animations
+    animations = [];
+    animations.push(["c", readValueFromBox(key), "Blue"]);
+    animations.push(["xy", readValueFromBox(key), [start+left.length, 1]]);
+    quickAnimate.push(animations);
+    for(i=start; i<end; i++){
+      animations = [];
+      if(left.indexOf(quickList[i]) != -1){
+        animations.push(["c", readValueFromBox(quickList[i]), "Brown"])
+        animations.push(["xy", readValueFromBox(quickList[i]), [start+left.indexOf(quickList[i]), 2]]);
+      }else{
+        animations.push(["c", readValueFromBox(quickList[i]), "Chocolate"])
+        animations.push(["xy", readValueFromBox(quickList[i]), [start+left.length+1+right.indexOf(quickList[i]), 2]]);
+      }
+      quickAnimate.push(animations);
+    }
+  
+    //set back to quickList
+    quickList[start+left.length] = key;
+    for(i=0; i<left.length; i++){
+      quickList[start+i] = left[i];
+    }
+    for(i=0; i<right.length; i++){
+      quickList[start+left.length+1+i] = right[i];
+    }
+  
+    animations = [];
+    for(i=start; i<=end; i++){
+      animations.push(["y", readValueFromBox(quickList[i]), 0]);
+      animations.push(["c", readValueFromBox(quickList[i]), "Green"]);
+    }
+    animations.push(["c", readValueFromBox(key), "Black"]);
+    quickAnimate.push(animations);
+    var mid = start+left.length;
+    console.log("in "+start+","+end);
+    console.log("left call ("+start+","+(mid-1)+")" + "  mid="+mid +"   right call ("+(mid+1)+","+end+")");
+    if(left.length>1){
+      console.log(mid==quickList.indexOf(key));
+      quickSort(start, quickList.indexOf(key)-1);
+    }
+    if(right.length>1){
+      console.log(mid==quickList.indexOf(key));
+      quickSort(quickList.indexOf(key)+1, end);
+    }
+    for(i=start; i<=end; i++){
+      animations.push(["y", readValueFromBox(quickList[i]), 0]);
+      animations.push(["c", readValueFromBox(quickList[i]), "Black"]);
+    }
+  }
+  
+}
+function quickAnimateStep(){
+  if(quickAnimate.length !=0 && quickReset != true){
+    var animations = quickAnimate.pop();
+    for(var i=0; i<animations.length; i++){
+      handleAnimate("quick_", animations[i]);
+    }
+    setTimeout(function(){ quickAnimateStep();}, 500);
+  }
+}
+function quickShuffle(){
+  quickReset=true;
+  quickSorting=false;
+  shuffle(quickNums);
+  resetQuickBox();
+}
+function resetQuickBox(){
+  quickReset=true;
+  quickSorting=false;
+  for(var i=0; i<10; i++){
+    var name="quick_" + quickNums[i];
+    boxXMoveTo(name, i);
+    boxYMoveTo(name, 0);
+    quickList[i] = document.getElementById(name);
+    quickList[i].style.background = "green";
+  }
+}
+
 
 function handleAnimate(algo, arr){
   var name = algo + arr[1].toString();
